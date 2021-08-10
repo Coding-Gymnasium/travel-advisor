@@ -26,6 +26,7 @@ const Map = ({ setCoordinates, setBounds, coordinates }) => {
           console.log(e); // not working yet
 
           setCoordinates({ lat: e.center.lat, lng: e.center.lng });
+          setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
         }}
         onChildClick={''}
       >
