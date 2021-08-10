@@ -6,7 +6,7 @@ import Raing from '@material-ui/lab';
 
 import useStyles from './styles'
 
-const Map = ({ coordinates, setBounds, setCoordinates }) => {
+const Map = ({ setCoordinates, setBounds, coordinates }) => {
 
   console.log(coordinates);
 
