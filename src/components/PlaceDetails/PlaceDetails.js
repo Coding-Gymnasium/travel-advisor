@@ -7,6 +7,8 @@ import Rating from '@material-ui/lab/Rating';
 import useStyles from './styles';
 
 const PlaceDetails = ({ place, selected, refProp }) => {
+  console.log(place);
+
   if (selected) refProp?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   const classes = useStyles();
 
@@ -37,7 +39,7 @@ const PlaceDetails = ({ place, selected, refProp }) => {
         </Box>
         {place?.awards?.map((award) => (
           <Box display="flex" justifyContent="space-between" my={1} alignItems="center">
-            <img src={award.images.small} />
+            <img src={award.images.small} alt={award.display_name} />
             <Typography variant="subtitle2" color="textSecondary">{award.display_name}</Typography>
           </Box>
         ))}
@@ -45,7 +47,7 @@ const PlaceDetails = ({ place, selected, refProp }) => {
           <Chip key={name} size="small" label={name} className={classes.chip} />
         ))}
         {place.address && (
-          <Typography gutterBottom variant="body2" color="textSecondary" className={classes.subtitle}>
+          <Typography gutterBottom variant="subtitle2" color="textSecondary" className={classes.subtitle}>
             <LocationOnIcon />{place.address}
           </Typography>
         )}
@@ -54,15 +56,15 @@ const PlaceDetails = ({ place, selected, refProp }) => {
             <PhoneIcon /> {place.phone}
           </Typography>
         )}
+        <CardActions>
+          <Button size="small" color="primary" onClick={() => window.open(place.web_url, '_blank')}>
+            Trip Advisor
+          </Button>
+          <Button size="small" color="primary" onClick={() => window.open(place.website, '_blank')}>
+            Website
+          </Button>
+        </CardActions>
       </CardContent>
-      <CardActions>
-        <Button size="small" color="primary" onClick={() => window.open(place.web_url, '_blank')}>
-          Trip Advisor
-        </Button>
-        <Button size="small" color="primary" onClick={() => window.open(place.website, '_blank')}>
-          Website
-        </Button>
-      </CardActions>
     </Card>
   );
 };
